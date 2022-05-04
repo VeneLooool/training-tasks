@@ -126,7 +126,7 @@ func (finder *Finder) findLongest() {
 }
 func cleanStrings(dic []string) (output []string) {
 	for _, v := range dic {
-		if v[len(v)-1] == 13 {
+		if v[len(v)-1] < 97 || v[len(v)-1] > 122 {
 			output = append(output, v[0:len(v)-1])
 		}
 	}
@@ -137,7 +137,6 @@ func Sequence(dic []string) []string {
 	if len(dic) == 0 {
 		return nil
 	}
-
 	finder := newFinder(cleanStrings(dic))
 
 	finder.buildData()
