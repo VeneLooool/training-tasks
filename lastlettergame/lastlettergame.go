@@ -73,6 +73,8 @@ func Sequence(dic []string) []string {
 
 package lastlettergame
 
+import "fmt"
+
 type Finder struct {
 	visited     []bool
 	result      []string
@@ -126,6 +128,7 @@ func (finder *Finder) findLongest() {
 }
 func cleanStrings(dic []string) (output []string) {
 	for _, v := range dic {
+		fmt.Println(v[len(v)-1])
 		if v[len(v)-1] < 97 || v[len(v)-1] > 122 {
 			output = append(output, v[0:len(v)-1])
 		}
@@ -137,7 +140,7 @@ func Sequence(dic []string) []string {
 	if len(dic) == 0 {
 		return nil
 	}
-	finder := newFinder(cleanStrings(dic))
+	finder := newFinder(dic)
 
 	finder.buildData()
 	finder.findLongest()
